@@ -1,0 +1,1 @@
+var CORE_BASE_URL='https://core.catalysts.cc'
