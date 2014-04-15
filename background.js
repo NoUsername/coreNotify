@@ -9,15 +9,15 @@ function showNotification() {
         message: "There are new core updates",
         iconUrl: "icon2.png"
       };
-      if (typeof chrome.notifications !== undefined) {
-      	chrome.notifications.create("", opt);
+      if (typeof chrome.notifications !== "undefined") {
+      	chrome.notifications.create("", opt, function() {});
       } else {
       	console.log("notifications not supported!");
       }
 }
 
 function extractNotifications(content) {
-	var select = $(content).find('ul.nav .badge');
+	var select = $(content).find('ul.nav-list .badge');
 	var count = 0;
 	var htmlSummary = "<ul>";
 	select.each(function() {
@@ -43,7 +43,7 @@ function updateUi(notificationCount, htmlSummary) {
 	} else {
 		chrome.browserAction.setBadgeText({text: ""});
 	}
-	localStorage.notificationSummary = htmlSummary + '<div class="meta-info">last update: ' + new Date().toString()+'</div>';
+	localStorage.notificationSummary = htmlSummary + '<div class="meta-info">last check: ' + new Date().toString()+'</div>';
 	// also update popups
 	var views = chrome.extension.getViews();
 	for (var i = 0; i < views.length; i++) {
@@ -72,12 +72,14 @@ function updateNotifications() {
 		var result = extractNotifications(data);
 		var notificationCount = result[0];
 		var oldValue = localStorage.notificationCount
-		if (oldValue !== undefined && oldValue != notificationCount) {
+		if (oldValue !== undefined && parseInt(oldValue,10) < parseInt(notificationCount, 10)) {
 			try {
 				showNotification();
 			} catch(e) {
 				console.log("could not show notification: ", e);
 			}
+		} else {
+			console.log("no new notifications");
 		}
 		localStorage.notificationCount = notificationCount;
 		console.log("notifications: " + notificationCount);

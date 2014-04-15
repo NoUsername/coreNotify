@@ -6,7 +6,8 @@
   "version": "1.0",
 
   "permissions": [
-    "https://core.catalysts.cc/"
+    "https://core.catalysts.cc/",
+    "notifications"
   ],
   "browser_action": {
     "default_icon": "icon2.png",
