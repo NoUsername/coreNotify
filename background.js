@@ -37,11 +37,15 @@ function fetchHtml(onDone) {
 	});
 }
 
+function setBadge(text) {
+	chrome.browserAction.setBadgeText({text: text});
+}
+
 function updateUi(notificationCount, htmlSummary) {
 	if (notificationCount > 0) {
-		chrome.browserAction.setBadgeText({text: notificationCount.toString()});
+		setBadge(notificationCount.toString());
 	} else {
-		chrome.browserAction.setBadgeText({text: ""});
+		setBadge("");
 	}
 	localStorage.notificationSummary = htmlSummary + '<div class="meta-info">last check: ' + new Date().toString()+'</div>';
 	// also update popups
@@ -66,6 +70,7 @@ function updateNotifications() {
 	fetchHtml(function(data) {
 		if (!isLoggedIn(data)) {
 			console.log("not logged  in!");
+			setBadge("!");
 			updateUi(0, "<div>Please log in to core smartwork.</div>");
 			return;
 		}
