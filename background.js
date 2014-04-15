@@ -41,20 +41,31 @@ function setBadge(text) {
 	chrome.browserAction.setBadgeText({text: text});
 }
 
+function currentTimeFormatted() {
+	var date = new Date();
+	var result = "";
+	result += (date.getHours() + ":");
+	result += (date.getMinutes() + ":");
+	result += (date.getSeconds() + " ");
+	result += (date.getDate()+ "." + (date.getMonth()+1)+"."+(date.getYear()+1900));
+	return result;
+}
+
 function updateUi(notificationCount, htmlSummary) {
 	if (notificationCount > 0) {
 		setBadge(notificationCount.toString());
 	} else {
 		setBadge("");
 	}
-	localStorage.notificationSummary = htmlSummary + '<div class="meta-info">last check: ' + new Date().toString()+'</div>';
+	var summaryForView = htmlSummary + '<div class="meta-info">last check: ' + currentTimeFormatted() + '</div>';
+	localStorage.notificationSummary = summaryForView;
 	// also update popups
 	var views = chrome.extension.getViews();
 	for (var i = 0; i < views.length; i++) {
 		var view = views[i];
 		if (view.location.href == viewTabUrl) {
-			if (htmlSummary) {
-				view.setContent(htmlSummary);
+			if (summaryForView) {
+				view.setContent(summaryForView);
 			} else {
 				view.setContent("news: " + (notificationCount).toString());
 			}

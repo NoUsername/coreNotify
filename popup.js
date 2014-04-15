@@ -9,7 +9,6 @@ $(function() {
 });
 
 $(document).on('click', '#content a', function() {
-	console.log("CLICK HANDLER!");
 	var href = $(this).attr('href');
 	if (href) {
 		chrome.tabs.create({'url': CORE_BASE_URL + href});

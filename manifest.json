@@ -4,6 +4,10 @@
   "name": "Core notifier",
   "description": "This extensions checks for notifications in core smartwork.",
   "version": "1.0",
+  "icons": { "16": "icon2.png",
+  "48": "icon2.png",
+  "128": "icon2.png"
+  },
 
   "permissions": [
     "https://core.catalysts.cc/",
