@@ -1,8 +1,14 @@
+var corenotify = {};
+
+(function() {
+
+var self = corenotify;
+
 var TIMEOUT = 30*1000;
 
 var viewTabUrl = chrome.extension.getURL('popup.html');
 
-function showNotification() {
+self.showNotification = function() {
 	var opt = {
         type: "basic",
         title: "Core Smartwork",
@@ -14,7 +20,7 @@ function showNotification() {
       } else {
       	console.log("notifications not supported!");
       }
-}
+};
 
 function extractNotifications(content) {
 	var select = $(content).find('ul.nav-list .badge');
@@ -37,9 +43,9 @@ function fetchHtml(onDone) {
 	});
 }
 
-function setBadge(text) {
+self.setBadge = function(text) {
 	chrome.browserAction.setBadgeText({text: text});
-}
+};
 
 function currentTimeFormatted() {
 	var date = new Date();
@@ -53,9 +59,9 @@ function currentTimeFormatted() {
 
 function updateUi(notificationCount, htmlSummary) {
 	if (notificationCount > 0) {
-		setBadge(notificationCount.toString());
+		self.setBadge(notificationCount.toString());
 	} else {
-		setBadge("");
+		self.setBadge("");
 	}
 	var summaryForView = htmlSummary + '<div class="meta-info">last check: ' + currentTimeFormatted() + '</div>';
 	localStorage.notificationSummary = summaryForView;
@@ -77,11 +83,11 @@ function isLoggedIn(data) {
 	return data.indexOf('id="login-page"') == -1;
 }
 
-function updateNotifications() {
+self.updateNotifications = function() {
 	fetchHtml(function(data) {
 		if (!isLoggedIn(data)) {
 			console.log("not logged  in!");
-			setBadge("!");
+			self.setBadge("!");
 			updateUi(0, "<div>Please log in to core smartwork.</div>");
 			return;
 		}
@@ -90,7 +96,7 @@ function updateNotifications() {
 		var oldValue = localStorage.notificationCount
 		if (oldValue !== undefined && parseInt(oldValue,10) < parseInt(notificationCount, 10)) {
 			try {
-				showNotification();
+				self.showNotification();
 			} catch(e) {
 				console.log("could not show notification: ", e);
 			}
@@ -101,12 +107,14 @@ function updateNotifications() {
 		console.log("notifications: " + notificationCount);
 		updateUi(notificationCount, result[1]);
 	});
-}
+};
 
 function backgroundTask() {
 	setTimeout(backgroundTask, TIMEOUT);
 	console.log("background check");
-	updateNotifications();
+	self.updateNotifications();
 }
 
 backgroundTask();
+
+})();
