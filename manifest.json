@@ -3,14 +3,14 @@
 
   "name": "Core notifier",
   "description": "This extensions checks for notifications in core smartwork.",
-  "version": "1.1",
+  "version": "1.2",
   "icons": { "16": "icon2.png",
   "48": "icon2.png",
   "128": "icon2.png"
   },
-
+  "options_page": "options.html",
   "permissions": [
-    "https://core.catalysts.cc/",
+    "https://*/",
     "notifications"
   ],
   "browser_action": {

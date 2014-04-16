@@ -37,7 +37,7 @@ function extractNotifications(content) {
 
 function fetchHtml(onDone) {
 	$.ajax({
-		url: CORE_BASE_URL + "/my/index"
+		url: cnUtil.getBaseUrl() + "/my/index"
 	}).success(function(data) {
 		onDone(data);
 	});
@@ -66,17 +66,13 @@ function updateUi(notificationCount, htmlSummary) {
 	var summaryForView = htmlSummary + '<div class="meta-info">last check: ' + currentTimeFormatted() + '</div>';
 	localStorage.notificationSummary = summaryForView;
 	// also update popups
-	var views = chrome.extension.getViews();
-	for (var i = 0; i < views.length; i++) {
-		var view = views[i];
-		if (view.location.href == viewTabUrl) {
-			if (summaryForView) {
-				view.setContent(summaryForView);
-			} else {
-				view.setContent("news: " + (notificationCount).toString());
-			}
+	cnUtil.withView(viewTabUrl, function(view) {
+		if (summaryForView) {
+			view.setContent(summaryForView);
+		} else {
+			view.setContent("news: " + (notificationCount).toString());
 		}
-	}
+	});
 }
 
 function isLoggedIn(data) {
@@ -87,8 +83,8 @@ self.updateNotifications = function() {
 	fetchHtml(function(data) {
 		if (!isLoggedIn(data)) {
 			console.log("not logged  in!");
-			self.setBadge("!");
 			updateUi(0, "<div>Please log in to core smartwork.</div>");
+			self.setBadge("!");
 			return;
 		}
 		var result = extractNotifications(data);

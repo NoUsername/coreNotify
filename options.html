@@ -1,0 +1,35 @@
+<!doctype html>
+<html ng-app="coreNotify">
+  <head>
+    <title>Getting Started Extension's Popup</title>
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css">
+    <script src="jquery-1.11.0.min.js"></script>
+    <script src="defs.js"></script>
+    <script src="angular.min.js"></script>
+    <script src="options.js"></script>
+  </head>
+  <body ng-controller="OptionsController">
+    <div class="container">
+    <h1 class="text-center">Options</h1>
+    <div class="row">
+    <div class="col-xs-6 col-xs-offset-3">
+    <form class="form-horizontal">
+      <div class="form-group">
+        <label for="page">Default sites:</label>
+        <select class="form-control" ng-model="url" ng-options="s for s in sites" name="page">
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="page">Custom site:</label>
+        <input class="form-control" type="text" ng-model="url" name="url" value="" />
+      </div>
+      <div class="form-group">
+        <input class="btn btn-primary" ng-click="saveSite()" type="button" name="submit" value="Save" />
+      </div>
+    </form>
+    </div>
+    </div>
+  </div>
+  </body>
+</html>
+
