@@ -17,6 +17,10 @@
       #content ul {
         list-style: none;
       }
+      .toCore {
+        cursor: pointer;
+        font-size: 0.7em;
+      }
     </style>
     <link rel="stylesheet" type="text/css" href="bootstrap.min.css">
     <script src="jquery-1.11.0.min.js"></script>
@@ -24,7 +28,10 @@
     <script src="popup.js"></script>
   </head>
   <body>
-    <h1 class="text-center">Core notifications</h1>
+    <h1 class="text-center">
+      Core notifications
+      <span class="glyphicon glyphicon-share-alt toCore" data-action="toCore" href=""></span>
+    </h1>
     <div id="content">
     </div>
 

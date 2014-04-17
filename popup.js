@@ -10,7 +10,7 @@ $(function() {
 	$(document).on('click', '#content a', function() {
 		var href = $(this).attr('href');
 		if (href) {
-			chrome.tabs.create({'url': cnUtil.getBaseUrl() + href});
+			chrome.tabs.create({'url': cnUtil.baseUrl() + href});
 		}
 	});
 	$(document).on('click', '[data-opentab]', function() {
@@ -22,6 +22,8 @@ $(function() {
 		var action = $(this).data('action');
 		if (action == "refresh") {
 			cnUtil.triggerRefresh();
+		} else if (action == "toCore") {
+			chrome.tabs.create({'url': cnUtil.baseUrl()});
 		}
 	});
 

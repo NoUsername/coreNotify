@@ -3,16 +3,25 @@ cnDefs.CORE_SITES=['https://core.catalysts.cc', 'https://core.core-smartwork.com
 
 var cnUtil = {};
 
-cnUtil.getBaseUrl = function() {
+cnUtil.baseUrl = function(url) {
+	if (url !== undefined) {
+		localStorage.siteUrl = url;
+	}
 	return localStorage.siteUrl;
 };
 
-cnUtil.setBaseUrl = function(url) {
-	localStorage.siteUrl = url;
+cnUtil.showNotifications = function(show) {
+	if (show !== undefined) {
+		localStorage.desktopNotifications = show;	
+	}
+	return localStorage.desktopNotifications;
 };
 
-if (!cnUtil.getBaseUrl()) {
-	cnUtil.setBaseUrl(cnDefs.CORE_SITES[0]);
+if (!cnUtil.baseUrl()) {
+	cnUtil.baseUrl(cnDefs.CORE_SITES[0]);
+}
+if (cnUtil.showNotifications() === undefined) {
+	cnUtil.showNotifications(true);
 }
 
 cnUtil.withView = function(viewUrl, action) {

@@ -9,11 +9,15 @@ var TIMEOUT = 30*1000;
 var viewTabUrl = chrome.extension.getURL('popup.html');
 
 self.showNotification = function() {
+	if (!cnUtil.showNotifications()) {
+		console.log("notifications disabled");
+		return;
+	}
 	var opt = {
         type: "basic",
         title: "Core Smartwork",
         message: "There are new core updates",
-        iconUrl: "icon2.png"
+        iconUrl: "coreLogo.png"
       };
       if (typeof chrome.notifications !== "undefined") {
       	chrome.notifications.create("", opt, function() {});
@@ -37,7 +41,7 @@ function extractNotifications(content) {
 
 function fetchHtml(onDone) {
 	$.ajax({
-		url: cnUtil.getBaseUrl() + "/my/index"
+		url: cnUtil.baseUrl() + "/my/index"
 	}).success(function(data) {
 		onDone(data);
 	});

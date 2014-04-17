@@ -1,9 +1,11 @@
 (function() {
 	var coreNotify = angular.module('coreNotify', []);
 
-	coreNotify.controller('OptionsController', function($scope) {
+	coreNotify.controller('OptionsController', function($scope, $timeout) {
 		$scope.sites = cnDefs.CORE_SITES;
-		$scope.url = localStorage.siteUrl;
+		$scope.url = cnUtil.baseUrl();
+		$scope.showDesktopNotifications = cnUtil.showNotifications();
+		$scope.savedInfo = false;
 
 		$scope.saveSite = function() {
 			var url = $scope.url;
@@ -14,8 +16,13 @@
 			if (cnUtil.strEndsWith(url, "/")) {
 				$scope.url = url.substring(0, url.length-1);
 			}
-			localStorage.siteUrl = $scope.url;
+			cnUtil.baseUrl($scope.url);
+			localStorage.desktopNotifications = $scope.showDesktopNotifications;
 			cnUtil.triggerRefresh();
+			$scope.savedInfo = true;
+			$timeout(function() {
+				$scope.savedInfo = false;
+			}, 1000);
 		};
 	});
 

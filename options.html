@@ -24,7 +24,20 @@
         <input class="form-control" type="text" ng-model="url" name="url" value="" />
       </div>
       <div class="form-group">
+      <div>Desktop notifications: </div>
+      <div class="btn-group">
+        <label class="btn btn-default" ng-class="{'btn-primary': showDesktopNotifications=='true'}">
+            <input type="radio" class="hidden" name="notify" data-ng-model="showDesktopNotifications" value="true"> On
+        </label>
+            <label class="btn btn-default" ng-class="{'btn-primary': showDesktopNotifications=='false'}">
+        <input type="radio" class="hidden" name="notify" data-ng-model="showDesktopNotifications" value="false"> Off
+            </label>
+          </div>
+        </div>
+
+      <div class="form-group">
         <input class="btn btn-primary" ng-click="saveSite()" type="button" name="submit" value="Save" />
+        <span class="label label-success" ng-show="savedInfo" >Saved!</span>
       </div>
     </form>
     </div>
