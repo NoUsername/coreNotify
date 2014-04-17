@@ -2,6 +2,11 @@
 
 Simple notification client for core smartwork http://core-smartwork.com
 
+Get it at the Chrome Webstore:
+
+https://chrome.google.com/webstore/detail/core-notifier/hplhfhjklckamcnagpohklgaadnjhlki
+
+
 ## Features
 
 * Using any core smartwork installation (setting custom url)
