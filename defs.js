@@ -17,6 +17,10 @@ cnUtil.showNotifications = function(show) {
 	return localStorage.desktopNotifications;
 };
 
+cnUtil.toBool = function(val) {
+	return val === "true" || val === true;
+};
+
 if (!cnUtil.baseUrl()) {
 	cnUtil.baseUrl(cnDefs.CORE_SITES[0]);
 }

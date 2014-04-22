@@ -9,7 +9,7 @@ var TIMEOUT = 30*1000;
 var viewTabUrl = chrome.extension.getURL('popup.html');
 
 self.showNotification = function() {
-	if (!cnUtil.showNotifications()) {
+	if (!cnUtil.toBool(cnUtil.showNotifications())) {
 		console.log("notifications disabled");
 		return;
 	}

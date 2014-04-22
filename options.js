@@ -17,7 +17,9 @@
 				$scope.url = url.substring(0, url.length-1);
 			}
 			cnUtil.baseUrl($scope.url);
-			localStorage.desktopNotifications = $scope.showDesktopNotifications;
+			cnUtil.showNotifications($scope.showDesktopNotifications);
+			console.log("base url=" + cnUtil.baseUrl());
+			console.log("notifications=" + cnUtil.showNotifications());
 			cnUtil.triggerRefresh();
 			$scope.savedInfo = true;
 			$timeout(function() {
