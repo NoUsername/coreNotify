@@ -1,11 +1,15 @@
 (function() {
 	var coreNotify = angular.module('coreNotify', []);
 
-	coreNotify.controller('OptionsController', function($scope, $timeout) {
+	coreNotify.controller('OptionsController', function($scope, $timeout, $http) {
 		$scope.sites = cnDefs.CORE_SITES;
 		$scope.url = cnUtil.baseUrl();
 		$scope.showDesktopNotifications = cnUtil.showNotifications();
 		$scope.savedInfo = false;
+		$http({url: "./changelog.txt"}).success(function(result) {
+			$scope.changelog = result;
+		});
+
 
 		$scope.saveSite = function() {
 			var url = $scope.url;

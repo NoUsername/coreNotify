@@ -13,36 +13,43 @@
     <h1 class="text-center">Options</h1>
     <div class="row">
     <div class="col-xs-6 col-xs-offset-3">
-    <form class="form-horizontal">
-      <div class="form-group">
-        <label for="page">Default sites:</label>
-        <select class="form-control" ng-model="url" ng-options="s for s in sites" name="page">
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="page">Custom site:</label>
-        <input class="form-control" type="text" ng-model="url" name="url" value="" />
-      </div>
-      <div class="form-group">
-      <div>Desktop notifications: </div>
-      <div class="btn-group">
-        <label class="btn btn-default" ng-class="{'btn-primary': showDesktopNotifications=='true'}">
-            <input type="radio" class="hidden" name="notify" data-ng-model="showDesktopNotifications" value="true"> On
-        </label>
-            <label class="btn btn-default" ng-class="{'btn-primary': showDesktopNotifications=='false'}">
-        <input type="radio" class="hidden" name="notify" data-ng-model="showDesktopNotifications" value="false"> Off
-            </label>
-          </div>
+      <div>
+      <form class="" role="form">
+        <div class="form-group">
+          <label for="page">Default sites:</label>
+          <select class="form-control" ng-model="url" ng-options="s for s in sites" name="page">
+          </select>
         </div>
+        <div class="form-group">
+          <label for="page">Custom site:</label>
+          <input class="form-control" type="text" ng-model="url" name="url" value="" />
+        </div>
+        <div class="form-group">
+        <div>Desktop notifications: </div>
+        <div class="btn-group">
+          <label class="btn btn-default" ng-class="{'btn-primary': showDesktopNotifications=='true'}">
+              <input type="radio" class="hidden" name="notify" data-ng-model="showDesktopNotifications" value="true"> On
+          </label>
+              <label class="btn btn-default" ng-class="{'btn-primary': showDesktopNotifications=='false'}">
+          <input type="radio" class="hidden" name="notify" data-ng-model="showDesktopNotifications" value="false"> Off
+              </label>
+            </div>
+          </div>
 
-      <div class="form-group">
-        <input class="btn btn-primary" ng-click="saveSite()" type="button" name="submit" value="Save" />
-        <span class="label label-success" ng-show="savedInfo" >Saved!</span>
-      </div>
-    </form>
+        <div class="form-group">
+          <input class="btn btn-primary" ng-click="saveSite()" type="button" name="submit" value="Save" />
+          <span class="label label-success" ng-show="savedInfo" >Saved!</span>
+        </div>
+      </form>
     </div>
     </div>
-  </div>
+    <div class="col-xs-6 col-xs-offset-3">  
+      <div style="height: 4em">&nbsp;</div>
+      <h3>Changelog</h3>
+      <pre ng-bind="changelog"></pre>
+    </div>
+    </div>
+    </div>
   </body>
 </html>
 
