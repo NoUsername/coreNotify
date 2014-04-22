@@ -1,0 +1,2 @@
+1.5 generate and show changelog
+1.4 fix enabling/disabling desktop notifications
