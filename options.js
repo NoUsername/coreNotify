@@ -9,6 +9,10 @@
 		$http({url: "./changelog.txt"}).success(function(result) {
 			$scope.changelog = result;
 		});
+		$scope.moreHidden = true;
+		$scope.showMore = function() {
+			$scope.moreHidden = false;
+		};
 
 
 		$scope.saveSite = function() {

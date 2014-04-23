@@ -48,6 +48,19 @@
       <h3>Changelog</h3>
       <pre ng-bind="changelog"></pre>
     </div>
+    <div class="col-xs-6 col-xs-offset-3">
+      <div style="height: 2em">&nbsp;</div>
+      <a href="#" ng-show="moreHidden" ng-click="showMore()">more</a>
+      <div ng-show="moreHidden==false">
+      <h3>Infos</h3>
+      <div>
+        Code: <a href="https://github.com/NoUsername/coreNotify">https://github.com/NoUsername/coreNotify</a>
+      </div>
+      <div>
+        <a href="./LICENSE">License</a>
+      </div>
+      </div>
+    </div>
     </div>
     </div>
   </body>
