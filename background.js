@@ -8,22 +8,42 @@ var TIMEOUT = 30*1000;
 
 var viewTabUrl = chrome.extension.getURL('popup.html');
 
+function onNotificationClicked() {
+	chrome.tabs.create({'url': cnUtil.baseUrl()});
+}
+
+function notificationsSupported() {
+	return typeof chrome.notifications !== "undefined";
+}
+
+if (notificationsSupported()) {
+	chrome.notifications.onClicked.addListener(function(notificationId) {
+		onNotificationClicked();
+		chrome.notifications.clear(notificationId, cnUtil.nullCallback);
+	});
+}
+
 self.showNotification = function() {
 	if (!cnUtil.toBool(cnUtil.showNotifications())) {
 		console.log("notifications disabled");
 		return;
 	}
+	var callback = function() {
+	  		notification.cancel();
+	  		onNotificationClicked();
+	  	};
 	var opt = {
-        type: "basic",
-        title: "Core Smartwork",
-        message: "There are new core updates",
-        iconUrl: "coreLogo.png"
-      };
-      if (typeof chrome.notifications !== "undefined") {
-      	chrome.notifications.create("", opt, function() {});
-      } else {
-      	console.log("notifications not supported!");
-      }
+		type: "basic",
+		title: "Core Smartwork",
+		message: "There are new core updates",
+		iconUrl: "coreLogo.png"
+	  };
+	  if (notificationsSupported()) {
+	  	var notification = chrome.notifications.create("", opt, cnUtil.nullCallback);
+	  	console.log("notification: ", notification);
+	  } else {
+	  	console.log("notifications not supported!");
+	  }
 };
 
 function extractNotifications(content) {

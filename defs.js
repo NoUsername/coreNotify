@@ -3,6 +3,8 @@ cnDefs.CORE_SITES=['https://core.catalysts.cc', 'https://core.core-smartwork.com
 
 var cnUtil = {};
 
+cnUtil.nullCallback = function(){};
+
 cnUtil.baseUrl = function(url) {
 	if (url !== undefined) {
 		localStorage.siteUrl = url;
