@@ -1,3 +1,4 @@
+1.6 fix updating popup while opened
 1.5 notification click action
 1.5 generate and show changelog
 1.4 fix enabling/disabling desktop notifications

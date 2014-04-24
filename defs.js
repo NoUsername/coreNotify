@@ -34,7 +34,8 @@ cnUtil.withView = function(viewUrl, action) {
 	var views = chrome.extension.getViews();
 	for (var i = 0; i < views.length; i++) {
 		var view = views[i];
-		if (view.location.href == viewUrl) {
+		var url = view.location.protocol + "//" + view.location.hostname + view.location.pathname;
+		if (url == viewUrl) {
 			action(view);
 		}
 	}
