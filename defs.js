@@ -1,5 +1,5 @@
 var cnDefs = {};
-cnDefs.CORE_SITES=['https://core.catalysts.cc', 'https://core.core-smartwork.com'];
+cnDefs.CORE_SITES=[];
 
 var cnUtil = {};
 

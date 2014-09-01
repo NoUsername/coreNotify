@@ -34,8 +34,8 @@ self.showNotification = function() {
 	  	};
 	var opt = {
 		type: "basic",
-		title: "Core Smartwork",
-		message: "There are new core updates",
+		title: "CORE smartwork",
+		message: "There are new CORE updates",
 		iconUrl: "coreLogo.png"
 	  };
 	  if (notificationsSupported()) {
@@ -107,7 +107,7 @@ self.updateNotifications = function() {
 	fetchHtml(function(data) {
 		if (!isLoggedIn(data)) {
 			console.log("not logged  in!");
-			updateUi(0, "<div>Please log in to core smartwork.</div>");
+			updateUi(0, "<div>Please log in to CORE smartwork.</div>");
 			self.setBadge("!");
 			return;
 		}
