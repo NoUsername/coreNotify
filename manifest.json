@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "Core notifier",
   "description": "This extensions checks for notifications in CORE smartwork.",
-  "version": "1.6",
+  "version": "1.7",
   "icons": {
     "16": "coreLogo.png",
     "48": "coreLogo.png",
