@@ -4,9 +4,9 @@
   "description": "This extensions checks for notifications in CORE smartwork.",
   "version": "1.7",
   "icons": {
-    "16": "coreLogo.png",
-    "48": "coreLogo.png",
-    "128": "coreLogo.png"
+    "16": "data/coreLogo.png",
+    "48": "data/coreLogo.png",
+    "128": "data/coreLogo.png"
   },
   "options_page": "options.html",
   "permissions": [
@@ -14,11 +14,15 @@
     "notifications"
   ],
   "browser_action": {
-    "default_icon": "coreLogo.png",
+    "default_icon": "data/coreLogo.png",
     "default_popup": "popup.html"
   },
   "background": {
-    "scripts": ["jquery-1.11.0.min.js", "defs.js", "background.js"]
+    "scripts": ["data/js/jquery-1.11.0.min.js",
+      "lib/chrome-utils.js",
+      "lib/defs.js",
+      "lib/background.js",
+      "lib/background-start.js"]
   },
   "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
 }
