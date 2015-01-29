@@ -18,7 +18,7 @@
     "default_popup": "popup.html"
   },
   "background": {
-    "scripts": ["data/js/jquery-1.11.0.min.js",
+    "scripts": ["data/js/jquery-1.11.2.min.js",
       "lib/chrome-utils.js",
       "lib/defs.js",
       "lib/background.js",
