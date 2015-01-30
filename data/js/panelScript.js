@@ -5,7 +5,7 @@ var corenotify = corenotify || {};
 var port = self.port;
 
 function handleAction(action) {
-  console.log("handling action " + action);
+  cnUtil.log("handling action " + action);
   if (action == 'refresh') {
     port.emit("refresh");
   } else if (action == 'toCore') {
@@ -16,11 +16,16 @@ function handleAction(action) {
 }
 
 self.port.on("init", function () {
-  console.log("init");
+  cnUtil.log("init");
+  if (corenotify.panelInitDone == true) {
+    cnUtil.log("ERROR: init called twice");
+    return;
+  }
+  corenotify.panelInitDone = true;
   // listen to link clicks
   $(document).on('click', '#content a', function(it) {
     var href = $(this).attr('href');
-    console.log("clicked on: " + href);
+    cnUtil.log("clicked on: " + href);
     if ($(this).attr("id") == 'notLoggedIn') {
       self.port.emit("openTab", null);
     } else {
@@ -41,7 +46,7 @@ self.port.on("showUrl", function(url) {
 });
 
 self.port.on("show", function onShow() {
-  console.log("opening panel");
+  cnUtil.log("opening panel");
 });
 
 self.port.on("parseContent", function(content) {
@@ -50,7 +55,7 @@ self.port.on("parseContent", function(content) {
 });
 
 self.port.on("updateContent", function(content) {
-  console.log("updateContent called");
+  cnUtil.log("updateContent called");
   $("#content").html(content);
 });
 

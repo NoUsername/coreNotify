@@ -4,7 +4,6 @@ function setContent(content) {
 }
 
 $(function() {
-	console.log("loading...");
 	setContent(localStorage['notificationSummary']);
 
 	$(document).on('click', '#content a', function() {

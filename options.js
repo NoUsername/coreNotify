@@ -26,8 +26,6 @@
 			}
 			cnUtil.baseUrl($scope.url);
 			cnUtil.showNotifications($scope.showDesktopNotifications);
-			console.log("base url=" + cnUtil.baseUrl());
-			console.log("notifications=" + cnUtil.showNotifications());
 			cnUtil.triggerRefresh();
 			$scope.savedInfo = true;
 			$timeout(function() {
