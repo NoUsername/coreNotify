@@ -1,18 +1,22 @@
 
 function setContent(content) {
+	$('#content').empty().append(cnUtil.notifications2html(content));
+}
+
+function setContentRaw(content) {
 	$('#content').html(content);
 }
 
 $(function() {
-	setContent(localStorage['notificationSummary']);
+	setContentRaw(localStorage['notificationSummary']);
 	if (localStorage['notifications']) {
-		setContent(cnUtil.notifications2html(localStorage['notifications']).html());
+		setContent(localStorage['notifications']);
 	}
 
 	$(document).on('click', '#content a', function() {
 		var href = $(this).attr('href');
 		if (href) {
-			chrome.tabs.create({'url': cnUtil.baseUrl() + href});
+			chrome.tabs.create({'url': cnUtil.fixUrl(href)});
 		}
 	});
 	$(document).on('click', '[data-opentab]', function() {

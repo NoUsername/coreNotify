@@ -51,11 +51,12 @@ self.port.on("show", function onShow() {
 
 self.port.on("parseContent", function(content) {
 	var result = cnUtil.parseContent(content);
-	self.port.emit("parsedContent", result[0], result[1]);
+	self.port.emit("parsedContent", result[0], result[1], result[2]);
 });
 
-self.port.on("updateContent", function(content, data) {
-  cnUtil.log("updateContent called");
-  cnUtil.notifications2html(data).appendTo($("#content"));
+self.port.on("updateContent", function(data) {
+  cnUtil.log("updateContent called with: ", data);
+  var elements = cnUtil.notifications2html(data);
+  cnUtil.log(elements.html());
+  $("#content").empty().append(elements);
 });
-

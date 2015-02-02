@@ -19,8 +19,8 @@
   },
   "background": {
     "scripts": ["data/js/jquery-1.11.2.min.js",
-      "lib/chrome-utils.js",
       "lib/defs.js",
+      "lib/chrome-utils.js",
       "lib/background.js",
       "lib/background-start.js"]
   },
