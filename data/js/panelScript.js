@@ -54,8 +54,8 @@ self.port.on("parseContent", function(content) {
 	self.port.emit("parsedContent", result[0], result[1]);
 });
 
-self.port.on("updateContent", function(content) {
+self.port.on("updateContent", function(content, data) {
   cnUtil.log("updateContent called");
-  $("#content").html(content);
+  cnUtil.notifications2html(data).appendTo($("#content"));
 });
 

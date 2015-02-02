@@ -5,6 +5,9 @@ function setContent(content) {
 
 $(function() {
 	setContent(localStorage['notificationSummary']);
+	if (localStorage['notifications']) {
+		setContent(cnUtil.notifications2html(localStorage['notifications']).html());
+	}
 
 	$(document).on('click', '#content a', function() {
 		var href = $(this).attr('href');
