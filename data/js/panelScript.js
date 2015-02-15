@@ -55,8 +55,8 @@ self.port.on("parseContent", function(content) {
 });
 
 self.port.on("updateContent", function(data) {
-  cnUtil.log("updateContent called with: ", data);
+  cnUtil.log("updateContent called");
   var elements = cnUtil.notifications2html(data);
-  cnUtil.log(elements.html());
+  cnUtil.trace(elements.html());
   $("#content").empty().append(elements);
 });
