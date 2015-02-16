@@ -5,7 +5,7 @@
   "description": "This extensions checks for notifications in CORE smartwork.",
   "author": "Paul Klingelhuber",
   "license": "MIT",
-  "version": "1.10",
+  "version": "1.11",
   "permissions": {
     "cross-domain-content": ["https://www.core.catalysts.cc"]
   }
