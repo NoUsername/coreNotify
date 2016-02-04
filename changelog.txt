@@ -1,3 +1,4 @@
+1.12 fix duplicate notifications (thanks github.com/Monterra), fixed wrong counts
 1.7 typos fixed, removed default urls
 1.6 fix updating popup while opened
 1.5 notification click action
