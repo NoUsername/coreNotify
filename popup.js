@@ -8,9 +8,9 @@ function setContentRaw(content) {
 }
 
 $(function() {
-	setContentRaw(localStorage['notificationSummary']);
-	if (localStorage['notifications']) {
-		setContent(localStorage['notifications']);
+	setContentRaw(localStorage.notificationSummary);
+	if (localStorage.notifications) {
+		setContent(localStorage.notifications);
 	}
 
 	$(document).on('click', '#content a', function() {
